@@ -3,13 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
-use App\Program;
 use Illuminate\Http\Response;
 use Input;
 use Redirect;
+use Session;
+use App\Http\Requests;
+use App\Http\Controllers\Controller;
+
+use App\Program;
+
 
 class ProgramController extends Controller
 {
@@ -47,7 +49,7 @@ class ProgramController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, $this->$rules);
+        $this->validate($request, $this->rules);
 
         $program = new Program;        
         
@@ -68,8 +70,10 @@ class ProgramController extends Controller
     public function show($id)
     {
         //
-        $program = Program::find($id);
-        return view('program.show')->with('program', $program);
+        $program = Program::findOrFail($id);
+        $teams = $program->teams;
+        Session::put('program', $id);
+        return view('program.show', compact('program', 'teams'));
     }
 
     /**
@@ -80,7 +84,9 @@ class ProgramController extends Controller
      */
     public function edit($id)
     {
-        //
+        
+        $program = Program::findOrFail($id);
+        return view('program.update')->with('program', $program);
     }
 
     /**

@@ -11,7 +11,7 @@ class Program extends Model
 
     public function storeProgram($request) {
 
-        $this->id = $program->generateId($request->input('name'));
+        $this->id = $this->generateId($request->input('name'));
         $this->name = $request->input('name');
         $this->description = $request->input('description');
 
@@ -39,5 +39,13 @@ class Program extends Model
     	$id = $initials . $random;
     	
     	return $id;
+    }
+
+    public function teams() {
+        return $this->hasMany('App\Team');
+    }
+
+    public function activities() {
+        return $this->hasMany('App\Activity');
     }
 }

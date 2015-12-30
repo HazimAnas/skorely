@@ -1,6 +1,6 @@
 @extends('layouts.sidebar')
 
-@section('title', 'Create Program')
+@section('title', 'Create Activity')
 
 @section('content')
 <h2>Create Program</h2>

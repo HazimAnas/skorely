@@ -23,6 +23,9 @@ Route::group(['prefix'=>'api','middleware' => 'cors'], function () {
 });
 
 Route::resource('programs', 'ProgramController');
-Route::resource('teams', 'TeamController');
-Route::resource('activities', 'ActivityController');
-Route::resource('points', 'PointController');
+
+Route::group(['prefix'=>'program'], function () {
+	Route::resource('teams', 'TeamController');
+	Route::resource('activities', 'ActivityController');
+	Route::resource('points', 'PointController');
+});

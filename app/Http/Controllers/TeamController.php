@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Session;
+
+use App\Team;
 
 class TeamController extends Controller
 {
@@ -38,6 +40,14 @@ class TeamController extends Controller
     public function store(Request $request)
     {
         //
+        $team = new Team;        
+        
+        if ($team->storeTeam($request)) {
+            return redirect('programs/'.Session::get('program'))->with('message', 'Team Added Successfully'); 
+        }
+        else {
+            return redirect('programs/'.Session::get('program'))->with('message', 'Fail to Add Team');
+        }
     }
 
     /**
