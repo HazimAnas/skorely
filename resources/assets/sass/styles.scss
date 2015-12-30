@@ -1,0 +1,19 @@
+// Import Bootstrap Compass integration
+@import "bootstrap-compass";
+
+// Import custom Bootstrap variables
+@import "bootstrap-variables";
+
+// Import Bootstrap for Sass
+@import "bootstrap";
+
+/*My style */
+
+#header {
+width: 100%;
+margin-bottom: 1em;
+}
+
+textarea {
+  resize: none;
+}

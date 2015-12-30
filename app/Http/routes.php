@@ -12,5 +12,17 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index/index');
 });
+
+Route::group(['prefix'=>'api','middleware' => 'cors'], function () {
+	Route::resource('programs', 'ProgramController');
+	Route::resource('teams', 'TeamController');
+	Route::resource('activities', 'ActivityController');
+	Route::resource('points', 'PointController');
+});
+
+Route::resource('programs', 'ProgramController');
+Route::resource('teams', 'TeamController');
+Route::resource('activities', 'ActivityController');
+Route::resource('points', 'PointController');
