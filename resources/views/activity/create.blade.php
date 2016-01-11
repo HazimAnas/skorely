@@ -3,8 +3,8 @@
 @section('title', 'Create Activity')
 
 @section('content')
-<h2>Create Program</h2>
-	{!! Form::open(array('url' => '/programs')) !!}
+<h2>Create Activity</h2>
+	{!! Form::open(array('url' => 'program/activities')) !!}
 	  <div class="form-group">
 	    <label for="name">Name</label>
 	    <input type="text" class="form-control" name="name" placeholder="name">

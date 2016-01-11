@@ -72,8 +72,9 @@ class ProgramController extends Controller
         //
         $program = Program::findOrFail($id);
         $teams = $program->teams;
+        $activities = $program->activities;
         Session::put('program', $id);
-        return view('program.show', compact('program', 'teams'));
+        return view('program.show', compact('program', 'teams', 'activities'));
     }
 
     /**

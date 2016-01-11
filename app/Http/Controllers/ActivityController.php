@@ -4,11 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Session;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Activity;
 
 class ActivityController extends Controller
 {
+    protected $rules = [        
+                        'name' => 'required|min:3',   
+                        'description' => 'required',
+                        ];
+
     /**
      * Display a listing of the resource.
      *
@@ -26,7 +33,7 @@ class ActivityController extends Controller
      */
     public function create()
     {
-        //
+        return view('activity.create');
     }
 
     /**
@@ -37,8 +44,16 @@ class ActivityController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $this->validate($request, $this->rules);
+
+        $program = new Activity;        
+        
+        if ($program->storeActivity($request)) {
+            return redirect('programs/'.Session::get('program'))->with('message', 'Activity Created Successfully'); 
+        }
+        else {
+            return redirect('programs/'.Session::get('program'))->with('message', 'Fail to Create Activity');
+        }    }
 
     /**
      * Display the specified resource.

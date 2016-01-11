@@ -13,7 +13,7 @@ class CreatePointTable extends Migration
     public function up()
     {
         Schema::create('point', function (Blueprint $table) {
-            $table->string('id')->unique();
+            $table->bigInteger('id', true, true)->unique();
             $table->float('amount');
             $table->string('team_id')->index();
             $table->string('activity_id')->index();
