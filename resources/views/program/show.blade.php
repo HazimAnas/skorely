@@ -48,7 +48,7 @@
 			<table class="table">
 				<tr><th>#</th><th>Name</th></tr>
 				@foreach ($activities as $index => $activity)
-				    <tr><td>{{ $index+1 }}</td><td><a href="#">{{ $activity->name }}</a></td></tr>
+				    <tr><td>{{ $index+1 }}</td><td><a href="/program/activities/{{ $activity->id }}">{{ $activity->name }}</a></td></tr>
 				@endforeach
 			</table>
 		</div>

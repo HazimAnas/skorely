@@ -29,7 +29,7 @@ class Program extends Model
 		$letters = preg_split("/\s+/", $name);
     	
     	foreach ($letters as $letter) {
-    		$initials .= $letter;
+    		$initials .= $letter[0];
     	}
     	
     	$random = "";

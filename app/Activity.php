@@ -4,6 +4,7 @@ namespace App;
 
 use Session;
 use Illuminate\Database\Eloquent\Model;
+use App\Point;
 
 class Activity extends Model
 {
@@ -32,7 +33,7 @@ class Activity extends Model
 		$letters = preg_split("/\s+/", $name);
     	
     	foreach ($letters as $letter) {
-    		$initials .= $letter;
+    		$initials .= $letter[0];
     	}
     	
     	$random = "";
@@ -42,5 +43,13 @@ class Activity extends Model
     	$id = $initials . $random;
     	
     	return $id;
-    } //
+    } 
+
+    public function getPoint($activityId, $programId = null) {
+
+        $point = new Point;
+        $points = $point->getActivityPoint($activityId, $programId);
+
+        return $points;
+    }
 }

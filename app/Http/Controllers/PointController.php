@@ -3,12 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Session;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\Point;
+
 class PointController extends Controller
 {
+
+    protected $rules = [        
+                        'amount' => 'required|numeric',   
+                        'team' => 'required',
+                        'activity' => 'required',
+                        ];
     /**
      * Display a listing of the resource.
      *
@@ -37,7 +45,16 @@ class PointController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, $this->rules);
+
+        $point = new Point;        
+        
+        if ($point->storePoint($request)) {
+            return redirect('program/activities/'.Session::get('activity'))->with('message', 'Point Added Successfully'); 
+        }
+        else {
+            return redirect('program/activities/'.Session::get('activity'))->with('message', 'Fail to Add Point');
+        }
     }
 
     /**

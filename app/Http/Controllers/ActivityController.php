@@ -8,6 +8,7 @@ use Session;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Activity;
+use App\Program;
 
 class ActivityController extends Controller
 {
@@ -53,7 +54,8 @@ class ActivityController extends Controller
         }
         else {
             return redirect('programs/'.Session::get('program'))->with('message', 'Fail to Create Activity');
-        }    }
+        }    
+    }
 
     /**
      * Display the specified resource.
@@ -63,7 +65,11 @@ class ActivityController extends Controller
      */
     public function show($id)
     {
-        //
+        $activity = Activity::findOrFail($id);
+        Session::put('activity', $id);
+        $points = $activity->getPoint($id, Session::get('program'));  
+              
+        return view('activity.show', compact('activity', 'points'));
     }
 
     /**
