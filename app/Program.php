@@ -9,11 +9,12 @@ class Program extends Model
     protected $fillable = ['name', 'description'];
     protected $table = 'program';
 
-    public function storeProgram($request) {
+    public function storeProgram($request, $userId) {
 
         $this->id = $this->generateId($request->input('name'));
         $this->name = $request->input('name');
         $this->description = $request->input('description');
+        $this->user_id = $userId;
 
         if ($this->save()) {
             return true;

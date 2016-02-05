@@ -11,6 +11,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Program;
+use Auth;
 
 
 class ProgramController extends Controller
@@ -20,6 +21,12 @@ class ProgramController extends Controller
                         'name' => 'required|min:3',   
                         'description' => 'required',
                         ];
+
+    protected $user; 
+
+    public function __construct() {
+        $this->user = Auth::user();
+    }
     /**
      * Display a listing of the resource.
      *
@@ -27,7 +34,7 @@ class ProgramController extends Controller
      */
     public function index()
     {
-        $programs = Program::all();
+        $programs = Program::where('user_id', '=', $this->user->id)->get();
         return view('program.index')->with('programs', $programs);
     }
 
@@ -51,9 +58,10 @@ class ProgramController extends Controller
     {
         $this->validate($request, $this->rules);
 
-        $program = new Program;        
+        $program = new Program;  
+
         
-        if ($program->storeProgram($request)) {
+        if ($program->storeProgram($request, $this->user->id)) {
             return Redirect::route('programs.index')->with('message', 'Program Created Successfully'); 
         }
         else {

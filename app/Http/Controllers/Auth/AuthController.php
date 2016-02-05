@@ -23,6 +23,9 @@ class AuthController extends Controller
 
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
 
+    protected $redirectPath = '/programs';
+    protected $loginPath = '/login';
+
     /**
      * Create a new authentication controller instance.
      *
@@ -56,10 +59,32 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
+            'id' => $this->generateId($data['name']),
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'type' => 'free',
         ]);
+
+        return $user; 
     }
+
+        public function generateId($name) {
+        $initials = "";
+
+        $letters = preg_split("/\s+/", $name);
+        
+        foreach ($letters as $letter) {
+            $initials .= $letter[0];
+        }
+        
+        $random = "";
+        for ($i=0; $i < 6; $i++) { 
+            $random .= rand(0,9);
+        }
+        $id = $initials . $random;
+        
+        return $id;
+    } 
 }

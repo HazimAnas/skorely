@@ -53,6 +53,12 @@
                     <li>
                         <a href="#contact">Contact</a>
                     </li>
+                    <li> 
+                        <a href="/register"  class="btn btn-success">Register</a>
+                    </li>
+                    <li> 
+                        <a href="/login"  class="btn btn-success">Login</a>
+                    </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

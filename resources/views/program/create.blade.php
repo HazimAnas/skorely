@@ -7,11 +7,11 @@
 	{!! Form::open(array('url' => '/programs')) !!}
 	  <div class="form-group">
 	    <label for="name">Name</label>
-	    <input type="text" class="form-control" name="name" placeholder="name">
+	    {!! Form::text('name', old('name'), ['class' => 'form-control', 'placeholder' => 'Name']) !!}
 	  </div>
 	  <div class="form-group">
 	    <label for="description">Description</label>
-	    <textarea class="form-control" name="description" placeholder="Description"></textarea>
+	    {!! Form::textarea('description', old('description'), ['class' => 'form-control', 'placeholder' => 'description']) !!}
 	  </div>
 	  <button type="submit" class="btn btn-default">Create</button>
 	{!! Form::close() !!}

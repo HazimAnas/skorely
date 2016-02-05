@@ -14,7 +14,6 @@ class ActivityController extends Controller
 {
     protected $rules = [        
                         'name' => 'required|min:3',   
-                        'description' => 'required',
                         ];
 
     /**

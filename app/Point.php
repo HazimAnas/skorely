@@ -27,7 +27,7 @@ class Point extends Model
         }        
         else {
             $point = $this->findOrFail($request->input('id'));
-            $point->amount = $request->input('amount');
+            $point->amount += $request->input('amount');
 
             if ($point->save()) {
                 return true;

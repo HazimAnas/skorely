@@ -40,17 +40,18 @@
 			    </div>
 			@endif
 			<table class="table">
-				<tr><th>#</th><th>Name</th></tr>
+				<tr><th>#</th><th>Name</th><th>Point</th></tr>
 				    <?php $i = 0 ?>
 				@foreach ($points as $index => $point)
 					<?php $i++ ?>
 				    <tr>
 				    	<td><h5>{{ $i }}</h5></td>
 				    	<td><h5>{{ $point['name'] }}</h5></td>
+				    	<td><h5>{{ $point['amount'] }}</h5></td>
 				    	<td>
 				    		{!! Form::open(array('url' => '/program/points', 'class' => 'form-inline')) !!}
 							  <div class="form-group">
-							    <input type="text" class="form-control" name="amount" placeholder="Amount" value=" {{ $point['amount']}}">
+							    <input type="text" class="form-control" name="amount" placeholder="Amount" value="0">
 							    <input type="hidden" class="form-control" name="id" value="{{ $point['id'] }}">
 							    <input type="hidden" class="form-control" name="team" value="{{ $point['team_id'] }}">
 							    <input type="hidden" class="form-control" name="activity" value="{{ $point['activity_id'] }}">
