@@ -60,7 +60,6 @@ class ProgramController extends Controller
 
         $program = new Program;  
 
-        
         if ($program->storeProgram($request, $this->user->id)) {
             return Redirect::route('programs.index')->with('message', 'Program Created Successfully'); 
         }
@@ -81,8 +80,9 @@ class ProgramController extends Controller
         $program = Program::findOrFail($id);
         $teams = $program->teams;
         $activities = $program->activities;
+        $rank = $program->getRank($id);
         Session::put('program', $id);
-        return view('program.show', compact('program', 'teams', 'activities'));
+        return view('program.show', compact('program', 'teams', 'activities', 'rank'));
     }
 
     /**
@@ -95,6 +95,7 @@ class ProgramController extends Controller
     {
         
         $program = Program::findOrFail($id);
+        Session::put('program', $id);
         return view('program.update')->with('program', $program);
     }
 
@@ -107,7 +108,18 @@ class ProgramController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, $this->rules);
+        
+        $program = Program::findOrFail($id);
+        $program->name = $request->input('name');
+        $program->description = $request->input('description');
+
+        if ($program->save()) {
+            return redirect('programs/'.Session::get('program'))->with('message', 'The program is successfully updated.');  
+        }
+        else {
+            return redirect('programs/'.Session::get('program'))->with('message', 'Fail to update the program.');
+        }
     }
 
     /**
@@ -118,6 +130,13 @@ class ProgramController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $program = Program::findOrFail($id);
+
+        if ($program->delete()) {
+            return Redirect::route('programs.index')->with('message', 'Program Deleted Successfully'); 
+        }
+        else {
+            return Redirect::route('programs.index')->with('message', 'Fail to Delete Program');
+        }
     }
 }

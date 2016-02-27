@@ -8792,13 +8792,61 @@ button.close {
   }
 }
 /*My style */
-/* line 12, ../../resources/assets/sass/styles.scss */
-#header {
-  width: 100%;
-  margin-bottom: 1em;
+/*==================================================
+=            Bootstrap 3 Media Queries             =
+==================================================*/
+/*==========  Mobile First Method  ==========*/
+/* Custom, iPhone Retina */
+/* Extra Small Devices, Phones */
+/* Small Devices, Tablets */
+/* Medium Devices, Desktops */
+/* Large Devices, Wide Screens */
+/* line 48, ../../resources/assets/sass/styles.scss */
+body {
+  padding-top: 100px;
 }
 
-/* line 17, ../../resources/assets/sass/styles.scss */
-textarea {
-  resize: none;
+/* line 52, ../../resources/assets/sass/styles.scss */
+h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5 {
+  margin-top: 0px;
+}
+
+/* line 56, ../../resources/assets/sass/styles.scss */
+.table tbody > tr > td.vert-align {
+  vertical-align: middle;
+}
+
+/* line 60, ../../resources/assets/sass/styles.scss */
+main {
+  margin-left: -15px;
+  margin-right: -15px;
+}
+/* line 14, ../../../../../../../../../Ruby22-x64/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.6/assets/stylesheets/bootstrap/mixins/_clearfix.scss */
+main:before, main:after {
+  content: " ";
+  display: table;
+}
+/* line 19, ../../../../../../../../../Ruby22-x64/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.6/assets/stylesheets/bootstrap/mixins/_clearfix.scss */
+main:after {
+  clear: both;
+}
+
+/* line 64, ../../resources/assets/sass/styles.scss */
+header {
+  margin-left: -15px;
+  margin-right: -15px;
+}
+/* line 14, ../../../../../../../../../Ruby22-x64/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.6/assets/stylesheets/bootstrap/mixins/_clearfix.scss */
+header:before, header:after {
+  content: " ";
+  display: table;
+}
+/* line 19, ../../../../../../../../../Ruby22-x64/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.3.6/assets/stylesheets/bootstrap/mixins/_clearfix.scss */
+header:after {
+  clear: both;
+}
+
+/* line 74, ../../resources/assets/sass/styles.scss */
+.center-block {
+  float: none;
 }

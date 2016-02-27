@@ -11,6 +11,10 @@ use App\Team;
 
 class TeamController extends Controller
 {
+
+    protected $rules = [        
+                    'name' => 'required|min:3',   
+                    ];
     /**
      * Display a listing of the resource.
      *
@@ -40,6 +44,8 @@ class TeamController extends Controller
     public function store(Request $request)
     {
         //
+        $this->validate($request, $this->rules);
+
         $team = new Team;        
         
         if ($team->storeTeam($request)) {
@@ -58,7 +64,11 @@ class TeamController extends Controller
      */
     public function show($id)
     {
-        //
+        $team = Team::findOrFail($id);
+        Session::put('team', $id);
+        //$points = $team->getPoint($id, Session::get('program'));  
+              
+        return view('team.show', compact('team'));
     }
 
     /**
@@ -69,7 +79,8 @@ class TeamController extends Controller
      */
     public function edit($id)
     {
-        //
+        $team = Team::findOrFail($id);
+        return view('team.update')->with('team', $team);    
     }
 
     /**
@@ -81,7 +92,18 @@ class TeamController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, $this->rules);
+
+        $team = Team::findOrFail($id);    
+        $team->name = $request->input('name');
+        
+        if ($team->save()) {
+            return redirect('programs/'.Session::get('program'))->with('message', 'The team is successfully updated.');  
+        }
+        else {
+            return redirect('programs/'.Session::get('program'))->with('message', 'Fail to update the team.');
+        }
+
     }
 
     /**
@@ -92,6 +114,13 @@ class TeamController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $team = Team::findOrFail($id);
+
+        if ($team->delete()) {
+            return redirect('programs/'.Session::get('program'))->with('message', 'Team Deleted Successfully'); 
+        }
+        else {
+            return redirect('programs/'.Session::get('program'))->with('message', 'Fail to Delete Team');
+        }
     }
 }

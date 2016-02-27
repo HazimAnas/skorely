@@ -140,8 +140,54 @@ class Point extends Model
 
             }         
         }
-
-        return $points;
+       usort($points, function($a, $b) {
+            if($a['amount']==$b['amount']) return 0;
+            return $a['amount'] < $b['amount']?1:-1;
+        });
+        return $points;   
     }
 
+    public function getTeamPoint($id) {
+
+        $points = 0;
+    }
+
+    public function getProgramRank($id) {
+
+        $program = Program::findOrFail($id);
+
+        $programPoints = $program->points;
+        $programTeams = $program->teams;
+
+        if($programPoints->count()) {
+
+            $teamPoints = [];
+
+            foreach ($programTeams as $key => $team) {
+                $pointSum = 0;
+
+                foreach ($programPoints as $key => $points) {
+                    
+                    if($team['id'] == $points['team_id']) {
+                        $pointSum+= $points['amount'];
+                    }                    
+                }
+
+                $teamPoints[] = [
+                                'id' => $team['id'],
+                                'name' => $team['name'],
+                                'points' => $pointSum
+                                ];
+            }
+            usort($teamPoints, function($a, $b) {
+                if($a['points']==$b['points']) return 0;
+                return $a['points'] < $b['points']?1:-1;
+            });
+
+            return $teamPoints;
+        }
+        else {
+            return 0;
+        }
+    }
 }

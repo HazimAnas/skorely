@@ -12,14 +12,23 @@
 */
 
 Route::get('/', function () {
+	if(Auth::check()) {
+		return Redirect::to('/programs');
+	}
     return view('index/index');
 });
 
 Route::get('/register', function () {
+	if(Auth::check()) {
+		return Redirect::to('/programs');
+	}
     return view('auth/register');
 });
 
 Route::get('/login', function () {
+	if(Auth::check()) {
+		return Redirect::to('/programs');
+	}
     return view('auth/login');
 });
 
@@ -49,3 +58,8 @@ Route::group(['prefix'=>'program', 'middleware' => 'auth'], function () {
 	Route::resource('points', 'PointController');
 });
 
+// this is after make the payment, PayPal redirect back to your site
+Route::get('payment/status', array(
+    'as' => 'payment.status',
+    'uses' => 'SubscriptionController@paymentStatus',
+));

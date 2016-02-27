@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Point;
 
 class Program extends Model
 {
@@ -48,5 +49,17 @@ class Program extends Model
 
     public function activities() {
         return $this->hasMany('App\Activity');
+    }
+
+    public function points()
+    {
+        return $this->hasManyThrough('App\Point', 'App\Activity');
+    }
+
+    public function getRank($programId) {
+        $point = new Point;
+        $points = $point->getProgramRank($programId);
+
+        return $points;
     }
 }

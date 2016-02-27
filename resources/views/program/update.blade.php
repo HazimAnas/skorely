@@ -1,11 +1,10 @@
-
-@extends('layouts.sidebar')
+@extends('layouts.master')
 
 @section('title', 'Update Program')
 
 @section('content')
 <h2>Update Program</h2>
-	{!! Form::model($program, array('route' => array('programs.update', $program->id))) !!}
+	{!! Form::model($program, ['method' => 'PATCH', 'route' => ['programs.update', $program->id]]) !!}
 	  <div class="form-group">
 	    <label for="name">Name</label>
 	    {!! Form::text('name', null, ['class' => 'form-control']) !!}

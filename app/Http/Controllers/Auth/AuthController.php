@@ -3,10 +3,14 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use Illuminate\Http\Request;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Illuminate\Support\Facades\Auth;
+
+use App\Subscription;
 
 class AuthController extends Controller
 {
@@ -21,7 +25,7 @@ class AuthController extends Controller
     |
     */
 
-    use AuthenticatesAndRegistersUsers, ThrottlesLogins;
+    use AuthenticatesAndRegistersUsers, ThrottlesLogins { AuthenticatesAndRegistersUsers::postRegister as register; }
 
     protected $redirectPath = '/programs';
     protected $loginPath = '/login';
@@ -65,7 +69,7 @@ class AuthController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
             'type' => 'free',
-        ]);
+            ]);       
 
         return $user; 
     }
@@ -87,4 +91,17 @@ class AuthController extends Controller
         
         return $id;
     } 
+
+     public function postRegister(Request $request) { 
+     // call the RegistersUsers::postRegister method 
+     // hold onto the return value for later 
+
+        if($request->input('type') == 'free') {
+
+            $redirect = $this->register($request); 
+            $user = $request->user(); 
+             
+            return $redirect; 
+        }
+    }
 }

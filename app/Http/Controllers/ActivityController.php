@@ -46,9 +46,9 @@ class ActivityController extends Controller
     {
         $this->validate($request, $this->rules);
 
-        $program = new Activity;        
+        $activity = new Activity;        
         
-        if ($program->storeActivity($request)) {
+        if ($activity->storeActivity($request)) {
             return redirect('programs/'.Session::get('program'))->with('message', 'Activity Created Successfully'); 
         }
         else {
@@ -69,7 +69,7 @@ class ActivityController extends Controller
         $points = $activity->getPoint($id, Session::get('program'));  
               
         return view('activity.show', compact('activity', 'points'));
-    }
+    }   
 
     /**
      * Show the form for editing the specified resource.
@@ -79,7 +79,8 @@ class ActivityController extends Controller
      */
     public function edit($id)
     {
-        //
+        $activity = Activity::findOrFail($id);
+        return view('activity.update')->with('activity', $activity);
     }
 
     /**
@@ -91,7 +92,18 @@ class ActivityController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, $this->rules);
+
+        $activity = Activity::findOrFail($id);    
+        $activity->name = $request->input('name');
+        $activity->description = $request->input('description');   
+        
+        if ($activity->save()) {
+            return redirect('program/activities/'.Session::get('activity'))->with('message', 'Activity updated successfully'); 
+        }
+        else {
+            return redirect('program/activities/'.Session::get('activity'))->with('message', 'Fail to updated activity');
+        }
     }
 
     /**
@@ -102,6 +114,13 @@ class ActivityController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $activity = Activity::findOrFail($id);
+
+        if ($activity->delete()) {
+            return redirect('programs/'.Session::get('program'))->with('message', 'Activity Deleted Successfully'); 
+        }
+        else {
+            return redirect('programs/'.Session::get('program'))->with('message', 'Fail to Delete Activity');
+        }
     }
 }

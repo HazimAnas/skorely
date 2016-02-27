@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>One Page Wonder - Start Bootstrap Template</title>
+    <title>Skorely - We Make Scorekeeping Easy!</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" >
@@ -39,7 +39,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Start Bootstrap</a>
+                <a class="navbar-brand" href="/">Skorely</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -53,11 +53,13 @@
                     <li>
                         <a href="#contact">Contact</a>
                     </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
                     <li> 
-                        <a href="/register"  class="btn btn-success">Register</a>
+                        <a href="/register">Register</a>
                     </li>
                     <li> 
-                        <a href="/login"  class="btn btn-success">Login</a>
+                        <a href="/login">Login</a>
                     </li>
                 </ul>
             </div>
@@ -70,8 +72,8 @@
     <header class="header-image">
         <div class="headline">
             <div class="container">
-                <h1>One Page Wonder</h1>
-                <h2>Will Knock Your Socks Off</h2>
+                <h1>Skorely</h1>
+                <h2>We make scorekeeping easier for you.</h2>
             </div>
         </div>
     </header>
@@ -83,33 +85,39 @@
 
         <!-- First Featurette -->
         <div class="featurette" id="about">
-            <img class="featurette-image img-circle img-responsive pull-right" src="http://placehold.it/500x500">
-            <h2 class="featurette-heading">This First Heading
-                <span class="text-muted">Will Catch Your Eye</span>
+            <img class="featurette-image img-circle img-responsive pull-right" src="{{ asset('img/3023231-seamless-pattern-simple-numbers-on-blackboard-background.jpg') }}">
+            <h2 class="featurette-heading">Scorekeeping Made Easy
+                <span class="text-muted"></span>
             </h2>
-            <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+            <p class="lead">We help you keep scores for anything from high school programs to corporate events. Whenever there are teams and scores involved, we will help to make it easier for you.</p>
         </div>
 
         <hr class="featurette-divider">
 
         <!-- Second Featurette -->
         <div class="featurette" id="services">
-            <img class="featurette-image img-circle img-responsive pull-left" src="http://placehold.it/500x500">
-            <h2 class="featurette-heading">The Second Heading
-                <span class="text-muted">Is Pretty Cool Too.</span>
+            <img class="featurette-image img-circle img-responsive pull-left" src="{{ asset('img/how-it-works-icon1.png') }}">
+            <h2 class="featurette-heading">How It Works
+                <span class="text-muted"></span>
             </h2>
-            <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+            <p class="lead">
+                The things you need to do is<br>
+                1) Create Your Program<br>
+                2) Add the Teams And Activities<br>
+                3) Add the Points for The Teams in Each Activity<br>
+                4) That's It!!</p>
+            <p class="lead">The App Will Take Care Of The Rest And Generate The Rank.</p>
         </div>
 
         <hr class="featurette-divider">
 
         <!-- Third Featurette -->
         <div class="featurette" id="contact">
-            <img class="featurette-image img-circle img-responsive pull-right" src="http://placehold.it/500x500">
-            <h2 class="featurette-heading">The Third Heading
-                <span class="text-muted">Will Seal the Deal.</span>
+            <img class="featurette-image img-circle img-responsive pull-right" src="{{ asset('img/Website-Under-Construction.jpg') }}">
+            <h2 class="featurette-heading">But, We Are Not Quite Ready Yet
+                <span class="text-muted"></span>
             </h2>
-            <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+            <p class="lead">Skorely is still under development. We are going to make sure that the app will be everything that you need and more. We can however say that it will be ready by this May. We hope that you can wait for us until then.</p>
         </div>
 
         <hr class="featurette-divider">
@@ -118,7 +126,7 @@
         <footer>
             <div class="row">
                 <div class="col-lg-12">
-                    <p>Copyright &copy; Your Website 2014</p>
+                    <p>Copyright &copy; Skorely 2016</p>
                 </div>
             </div>
         </footer>

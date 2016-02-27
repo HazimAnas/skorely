@@ -1,4 +1,4 @@
-@extends('layouts.sidebar')
+@extends('layouts.master')
 
 @section('title', $activity->name)
 
@@ -11,7 +11,7 @@
 	@endif
 <div class="panel panel-default">
 	<div class="panel-body">
-    	<h3>Program Details</h3>
+    	<h3>Activity Details</h3>
   	</div>
     <table class="table">
 		<tr><th>Name</th><td>{{ $activity->name }}</td></tr>
@@ -19,16 +19,25 @@
 		<tr><th>Created</th><td>{{ $activity->created_at }}</td></tr>
 	</table>
 </div>
+<div class="row">
+	<div class="col-lg-12">
 
-	<p>
 		<a href="/program/activities/{{ $activity->id }}/edit"  class="btn btn-success">Edit Activity</a>		
-	</p>
+
+		{!! Form::open(['class' => 'form pull-right', 'method' => 'DELETE', 'route' => ['program.activities.destroy', $activity->id]]) !!}
+		    {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
+		{!! Form::close() !!}
+		
+	</div>
+</div>
+
+<hr>
 
 <div class="row">
 	<div class="col-lg-12">
 		<div class="panel panel-default">
 			<div class="panel-body">
-				<h3>Team List</h3>
+				<h3>Team Rank</h3>
 		  	</div>
 		  	@if (count($errors) > 0)
 			    <div class="alert alert-danger">
@@ -45,9 +54,9 @@
 				@foreach ($points as $index => $point)
 					<?php $i++ ?>
 				    <tr>
-				    	<td><h5>{{ $i }}</h5></td>
-				    	<td><h5>{{ $point['name'] }}</h5></td>
-				    	<td><h5>{{ $point['amount'] }}</h5></td>
+				    	<td class="vert-align">{{ $i }}</td>
+				    	<td class="vert-align">{{ $point['name'] }}</td>
+				    	<td class="vert-align">{{ $point['amount'] }}</td>
 				    	<td>
 				    		{!! Form::open(array('url' => '/program/points', 'class' => 'form-inline')) !!}
 							  <div class="form-group">

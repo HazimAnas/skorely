@@ -1,4 +1,4 @@
-@extends('layouts.sidebar')
+@extends('layouts.master')
 
 @section('title', 'List all Program')
 
@@ -9,13 +9,22 @@
 			<p>{{ Session::get('message') }}</p>	
 		</div>	
 	@endif
+	<h1>My Programs</h1>
+	<h3>List of all your programs</h3>
 
-	<table class="table">
-		<p><a href="/programs/create"  class="btn btn-success">Create Program</a></p>
-		<tr><th>#</th><th>Name</th></tr>
+	<a href="/programs/create"  class="btn btn-success">Create New Program</a>
+
+	<hr>
 		@foreach ($programs as $index => $program)
-		    <tr><td>{{ $index+1 }}</td><td><a href="/programs/{{ $program->id }}">{{ $program->name }}</a></td></tr>
+		<h2>{{ $program->name }}</h2>
+		<h4>{{ $program->description }}</h4>
+		<p>
+			<a href="/programs/{{ $program->id }}" class="btn btn-primary">View Program</a>
+			<a href="/programs/{{ $program->id }}/edit"  class="btn btn-success">Edit Program</a>			
+    	</p>
+    	<div class="clearfix"></div>
+        <hr>
+    
 		@endforeach
-	</table>
 
 @stop
