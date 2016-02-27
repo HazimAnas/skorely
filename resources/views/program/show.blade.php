@@ -9,14 +9,6 @@
 			<p>{{ Session::get('message') }}</p>	
 		</div>	
 	@endif
-	@if (Session::has('errors'))   
-        
-        @foreach ($errors->all() as $error)
-            <div class="alert alert-danger">   
-                <p>{{ $error }}</p>    
-            </div>
-        @endforeach 
-    @endif
 
    	<h2>{{ $program->name }}</h2>
 	<p>{{ $program->description }}</p>
@@ -83,13 +75,15 @@
 			  	</div>
 				<table class="table">
 					<tr><th>#</th><th>Name</th><th>Points</th></tr>
-					@foreach ($rank as $index => $team)
-					    <tr>
-					    	<td class="vert-align">{{ $index+1 }}</td>
-					    	<td class="vert-align"><a href="/program/teams/{{ $team['id'] }}">{{ $team['name'] }}</a></td>
-						   	<td class="vert-align">{{ $team['points'] }}</td>
-				        </tr>
-					@endforeach
+					@if ( $rank != 0)
+						@foreach ($rank as $index => $team)
+						    <tr>
+						    	<td class="vert-align">{{ $index+1 }}</td>
+						    	<td class="vert-align"><a href="/program/teams/{{ $team['id'] }}">{{ $team['name'] }}</a></td>
+							   	<td class="vert-align">{{ $team['points'] }}</td>
+					        </tr>
+						@endforeach
+					@endif
 				</table>
 			</div>
 		</div>
